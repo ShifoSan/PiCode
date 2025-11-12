@@ -3,7 +3,7 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 // Initialize the Gemini client
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({
-    model: 'gemini-2.5-pro',
+    model: 'gemini-2.5-flash',
     temperature: 0.2,
     maxOutputTokens: 1500,
     systemInstruction: 'You are PiCode, a professional coding assistant. Provide accurate, clean, and well-commented code snippets. When debugging, explain errors clearly. When reviewing, be constructive and specific. Format all code with proper syntax highlighting. Keep responses concise and under 1500 characters when possible. Support all major programming languages.',
