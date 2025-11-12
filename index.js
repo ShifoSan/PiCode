@@ -39,9 +39,25 @@ for (const file of commandFiles) {
 
 
 // When the client is ready, run this code (only once)
-client.once('ready', () => {
+client.once('ready', async () => {
 	console.log('Ready!');
     client.user.setActivity('Code with /help | by ShifoSan', { type: ActivityType.Watching });
+
+    // Register slash commands
+    try {
+        console.log('Started refreshing application (/) commands.');
+
+        const commandsData = [];
+        for (const command of client.commands.values()) {
+            commandsData.push(command.data.toJSON());
+        }
+
+        await client.application.commands.set(commandsData);
+
+        console.log(`Successfully registered ${commandsData.length} application (/) commands.`);
+    } catch (error) {
+        console.error('Error registering commands:', error);
+    }
 });
 
 client.on('interactionCreate', async interaction => {
